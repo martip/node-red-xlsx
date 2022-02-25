@@ -12,10 +12,10 @@ Either use the `Node-RED Menu - Manage Palette - Install`, or run the following 
 
 ## Usage
 
-### XLXS to object
+### XLSX to object
 
 You pass the content of a XLSX file, as a buffer, in the `msg.payload`.
 
-### Object to XLXS
+### Object to XLSX
 
 You pass a JSON object, as a string, in the `msg.payload`.
