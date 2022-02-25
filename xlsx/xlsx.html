@@ -31,12 +31,36 @@
     <label style="width: 50px; margin-right: 10px; text-align: right;" for="node-input-map">Map</span></label>
     <input type="text" id="node-input-map" style="width: 185px;" />
   </div>  
-  <div class="form-row" style="margin-top:20px">
-    <label style="width:100%;">Object to XSLX options</span></label>
-  </div>
-  <div class="form-row" style="padding-left: 20px;">
-    <label><i class="fa fa-sign-out"></i> Output</span></label>
-  </div>
+</script>
+
+<script type="text/html" data-help-name="xlsx">
+  <p>A function that parses the <code>msg.payload</code>, expected to be in XLSX format, using the <strong>read-excel-file</strong> package.</p>
+  <h3>Inputs</h3>
+  <dl class="message-properties">
+    <dt>payload <span class="property-type">buffer</span></dt>
+    <dd>The buffer of the XSLX file.</dd>
+  </dl>
+  <h3>Outputs</h3>
+  <dl class="message-properties">
+    <dt>filename <span class="property-type">string</span></dt>
+    <dd>The name of the XSLX file.</dd>
+  </dl>
+  <dl class="message-properties">
+    <dt>payload <span class="property-type">object | array</span></dt>
+    <dd>The parsed XLSX file as an array or object</dd>
+  </dl>
+  <h3>Details</h3>
+  <p>The node can process the first sheet or all the sheets of a workbook.</p>
+  <p>By default, the node outputs an array of arrays (the rows of the sheet), for each processed sheet.</p>
+  <p>When parsing only the first sheet, an optional JSON map can be provided: in this case, the output will be a JSON object (check the <strong>read-excel-file</strong> package documentation for more information; please note that the <i>schema</i> option is not implemented in this node).</p>
+  <p>When parsing all the sheets in a workbook, the output is sent as a single message or as multiple messages (one for each sheet).</p>
+  <p>If the output is sent as a single message, the payload will be an array of arrays or as an object, in which the keys are the names of the sheets.</p>
+  <h3>References</h3>
+  <ul>
+    <li><a href="https://www.npmjs.com/package/read-excel-file">read-excel-file</a> - Details of the <strong>read-excel-file</strong> package</li>
+  </ul>
+  
+
 </script>
 
 <script type="text/javascript">
@@ -71,6 +95,7 @@
             $('#node-input-parse').show().focus();
             $('#node-input-parse').change();
           } else {
+            $('#node-input-parse').val('rows');
             $('#node-input-parse').hide();
             $('#schema-options').hide();
             $('#map-options').hide();

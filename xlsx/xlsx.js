@@ -27,7 +27,7 @@ module.exports = function(RED) {
 
     this.on('input', async (msg, send, done) => {
       if (msg.hasOwnProperty('payload')) {
-        if (Buffer.isBuffer(msg.payload)) { // convert XLSX buffer to object
+        if (Buffer.isBuffer(msg.payload)) {
           try {
 
             if (this.sheets === 'first') {
@@ -63,7 +63,6 @@ module.exports = function(RED) {
           } catch (error) {
             done(error);
           }
-        } else { // convert object to XLSX buffer
         }
       } else {
         // If no payload just pass it on.
