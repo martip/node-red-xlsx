@@ -1,0 +1,95 @@
+<script type="text/html" data-template-name="xlsx">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</span></label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+  <hr align="middle"/>
+  <div class="form-row">
+    <label style="width:100%;">XLSX to Object options</span></label>
+  </div>
+  <div class="form-row" style="padding-left: 20px;">
+    <label><i class="fa fa-sign-in"></i> Input</span></label>
+    <select type="text" id="node-input-sheets" style="width:250px;">
+      <option value="first">read the first sheet only</option>
+      <option value="all">read all sheets</option>
+    </select>
+  </div>
+  <div class="form-row" style="padding-left: 20px;">
+    <label><i class="fa fa-sign-out"></i> Output</span></label>
+    <select type="text" id="node-input-multi" style="width:250px;">
+      <option value="one">a message per sheet</option>
+      <option value="array">a single message [array]</option>
+      <option value="object">a single message {object}</option>
+    </select>
+    <select type="text" id="node-input-parse" style="width:250px; display: none;">
+      <option value="rows">an array of rows</option>
+      <option value="map">a JSON object using a map</option>
+    </select>
+  </div>
+  <div class="form-row" id="map-options" style="padding-left: 20px; display: none;">
+    <label></label>
+    <label style="width: 50px; margin-right: 10px; text-align: right;" for="node-input-map">Map</span></label>
+    <input type="text" id="node-input-map" style="width: 185px;" />
+  </div>  
+  <div class="form-row" style="margin-top:20px">
+    <label style="width:100%;">Object to XSLX options</span></label>
+  </div>
+  <div class="form-row" style="padding-left: 20px;">
+    <label><i class="fa fa-sign-out"></i> Output</span></label>
+  </div>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('xlsx', {
+      category: 'parser',
+      color:'#DEBD5C',
+      defaults: {
+        name: { value: '' },
+        sheets: { value: 'first', required: true },
+        multi: { value: 'one', required: true },
+        parse: { value: 'rows', required: true },
+        map: { value: '' }
+      },
+      inputs: 1,
+      outputs: 1,
+      icon: 'xlsx.svg',
+      label: function() {
+        return this.name || 'xlsx' ;
+      },
+      labelStyle: function() {
+        return this.name ? 'node_label_italic' : '';
+      },
+      paletteLabel: 'xlsx',
+      oneditprepare: function() {
+        $('#node-input-sheets').val(this.sheets);
+        $('#node-input-multi').val(this.multi);
+        $('#node-input-parse').val(this.parse);
+        $('#node-input-sheets').on('change', function() {
+          if ($('#node-input-sheets').val() === 'first') {
+            $('#node-input-multi').val('one');
+            $('#node-input-multi').hide();
+            $('#node-input-parse').show().focus();
+            $('#node-input-parse').change();
+          } else {
+            $('#node-input-parse').hide();
+            $('#schema-options').hide();
+            $('#map-options').hide();
+            $('#node-input-multi').show().focus();
+          }
+        });
+        $('#node-input-parse').on('change', function() {
+          const v = $('#node-input-parse').val();
+          if (v === 'rows') {
+            $('#map-options').hide();
+          } else if (v === 'map') {
+            $('#map-options').show();
+          }
+        });
+        $('#node-input-map').typedInput({
+          type:'json',
+          types:['json']
+        });
+
+      }
+  });
+</script>
