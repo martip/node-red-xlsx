@@ -2,7 +2,11 @@
   "name": "@martip/node-red-xlsx",
   "version": "1.0.0",
   "description": "Converts between a XLSX formatted stream and its JavaScript object representation, in either direction.",
-  "keywords": [
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martip/node-red-xlsx.git"
+  },
+ "keywords": [
     "node-red",
     "xlsx",
     "Excel"
