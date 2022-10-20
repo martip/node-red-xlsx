@@ -1,4 +1,4 @@
-# node-red-contrib-xlsx
+# @martip/node-red-xlsx
 
 A [Node-RED](http://nodered.org/) node that parses a XLSX file and converts it to a JavaScript representation (object or array).
 

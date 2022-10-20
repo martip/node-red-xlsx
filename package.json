@@ -1,5 +1,5 @@
 {
-  "name": "node-red-contrib-xlsx",
+  "name": "@martip/node-red-xlsx",
   "version": "1.0.0",
   "description": "Converts between a XLSX formatted stream and its JavaScript object representation, in either direction.",
   "keywords": [
