@@ -8,7 +8,7 @@ This node uses the [read-excel-file](https://www.npmjs.com/package/read-excel-fi
 
 Either use the `Node-RED Menu - Manage Palette - Install`, or run the following command in your Node-RED user directory - typically `~/.node-red`
 
-    npm install node-red-contrib-xlsx
+    npm install @martip/node-red-xlsx
 
 ## Usage
 
